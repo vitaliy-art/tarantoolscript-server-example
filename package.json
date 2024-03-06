@@ -1,0 +1,36 @@
+{
+  "name": "tarantoolscript-server-example",
+  "version": "1.0.0",
+  "description": "Simple TarantoolScript server implementation.",
+  "scripts": {
+    "build": "tstl",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitaliy-art/tarantoolscript-server-example.git"
+  },
+  "keywords": [
+    "tarantool",
+    "typescript",
+    "tarantoolscript",
+    "lua",
+    "example",
+    "http",
+    "server"
+  ],
+  "author": "Vitaliy Artemov (olivera507224@yandex.ru)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vitaliy-art/tarantoolscript-server-example/issues"
+  },
+  "homepage": "https://github.com/vitaliy-art/tarantoolscript-server-example#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "eslint": "^8.57.0",
+    "tarantoolscript": "^0.12.2",
+    "typescript": "^5.3.3",
+    "typescript-to-lua": "^1.24.1"
+  }
+}

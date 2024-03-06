@@ -1,0 +1,38 @@
+{
+    "$schema": "https://raw.githubusercontent.com/TypeScriptToLua/TypeScriptToLua/master/tsconfig-schema.json",
+
+    "compilerOptions": {
+      "incremental": true,
+      "target": "ESNext",
+      "module": "commonjs",
+      "sourceMap": true,
+      "strict": true,
+      "moduleResolution": "Node10",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "skipDefaultLibCheck": true,
+      "lib": ["ESNext"],
+      "outDir": "build",
+      "rootDir": "./src",
+
+      "types": [
+      ],
+
+      "baseUrl": "./node_modules",
+      "paths": {
+
+      }
+    },
+
+    "tstl": {
+      "luaTarget": "JIT",
+      "buildMode": "default",
+      "sourceMapTraceback": true,
+      "noImplicitGlobalVariables": true,
+      "tstlVerbose": true,
+      "noResolvePaths": [
+
+      ]
+    }
+}

@@ -13,10 +13,11 @@
       "forceConsistentCasingInFileNames": true,
       "skipDefaultLibCheck": true,
       "lib": ["ESNext"],
-      "outDir": "build",
+      "outDir": "build/app",
       "rootDir": "./src",
 
       "types": [
+        "lua-types/5.4"
       ],
 
       "baseUrl": "./node_modules",

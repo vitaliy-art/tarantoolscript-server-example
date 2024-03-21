@@ -22,7 +22,10 @@
 
       "baseUrl": "./node_modules",
       "paths": {
-
+        "http.server": ["tarantoolscript/src/http.server.d.ts"],
+        "uuid": ["tarantoolscript/src/uuid.d.ts"],
+        "json": ["tarantoolscript/src/json.d.ts"],
+        "log": ["tarantoolscript/src/log.d.ts"]
       }
     },
 
@@ -33,7 +36,10 @@
       "noImplicitGlobalVariables": true,
       "tstlVerbose": true,
       "noResolvePaths": [
-
+        "http.server",
+        "uuid",
+        "json",
+        "log"
       ]
     }
 }

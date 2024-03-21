@@ -11,7 +11,8 @@
 				"sumneko.lua",
 				"riussi.code-stats-vscode",
 				"WakaTime.vscode-wakatime",
-				"EditorConfig.EditorConfig"
+				"EditorConfig.EditorConfig",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	},

@@ -20,7 +20,10 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	"forwardPorts": [
+        3302,
+        8000
+    ],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	"postCreateCommand": "sh ./.devcontainer/after_create.sh",

@@ -4,7 +4,8 @@
   "description": "Simple TarantoolScript server implementation.",
   "scripts": {
     "build": "tstl",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run build && cd ./build/app && ../.rocks/bin/luatest",
+    "test-coverage": "npm run build && cd ./build/app && rm -f luacov.*.out* && ../.rocks/bin/luatest --coverage && ../.rocks/bin/luacov . && grep -A999 '^Summary' luacov.report.out"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
     "eslint": "^8.57.0",
-    "tarantoolscript": "^0.13.1",
+    "tarantoolscript": "^0.13.2",
     "typescript": "^5.3.3",
     "typescript-to-lua": "^1.24.1"
   }

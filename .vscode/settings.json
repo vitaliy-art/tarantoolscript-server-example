@@ -3,9 +3,12 @@
         "frommap",
         "fromstr",
         "isuuid",
+        "luatest",
         "setcookie",
         "tarantoolscript",
-        "tomap"
+        "tomap",
+        "Traceback",
+        "tstl"
     ],
     "[typescript]": {
         "editor.formatOnSave": true

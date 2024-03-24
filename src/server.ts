@@ -10,7 +10,7 @@ type Response = rocks.HttpResponse;
 declare const box: Box;
 
 function handlerSync(this: void, req: Request): Response {
-    const resp = {} as Response;
+    const resp = { headers: {} as LuaTable<string, string> } as Response;
     resp.headers?.set('Access-Control-Allow-Credentials', 'true');
 
     if (req.headers.has('origin')) {
@@ -42,19 +42,16 @@ function handlerSync(this: void, req: Request): Response {
 
     const timestamp = os.time(os.date('*t'));
     const space = box.space.get('matches');
-    let match = space.get(user_id);
+    let tuple = space.get(user_id);
 
-    let insert = false;
-    if (!match) {
-        match = space.frommap({ id: user_id, partner_ids: {} });
-        insert = true;
-    }
-
-    match.partner_ids[partner.id.str()] = { id: partner_user_id, timestamp: timestamp };
-    if (insert) {
-        space.insert(match);
+    if (!tuple) {
+        tuple = space.frommap({ id: user_id, partner_ids: { [partner.id.str()]: { id: partner_user_id, timestamp } } });
+        space.insert(tuple);
     } else {
-        space.replace(match);
+        space.update(user_id, [
+            ['=', `[2]["${partner.id}"].id`, partner_user_id],
+            ['=', `[2]["${partner.id}"].timestamp`, timestamp],
+        ]);
     }
 
     return resp;
@@ -103,18 +100,23 @@ function handlerMatch(this: void, req: Request): Response {
 
 function partnersPost(this: void, req: Request): Response {
     const resp = {} as Response;
-    const body = req.json() as LuaTable<string, unknown>;
+    const [ok, body] = pcall(() => req.json());
+    if (!ok) {
+        resp.status = 400;
+        resp.body = body;
+        return resp;
+    }
 
-    const id = uuid.fromstr(body.get('id') as string || '');
+    const id = uuid.fromstr((body as LuaTable<string, unknown>).get('id') as string || '');
     if (!id) {
-        resp.status = 404;
+        resp.status = 400;
         resp.body = 'id should be a uuid string';
         return resp;
     }
 
-    const name = body.get('name');
+    const name = (body as LuaTable<string, unknown>).get('name');
     if (!name || name == '') {
-        resp.status = 404;
+        resp.status = 400;
         resp.body = 'name cannot be empty';
         return resp;
     }
@@ -130,7 +132,14 @@ function partnersPost(this: void, req: Request): Response {
 function partnersGet(this: void, req: Request): Response {
     const resp = {} as Response;
     const space = box.space.get('partners');
-    const partner_id = uuid.fromstr(req.stash('partner_id') as string || '');
+    const partner_id_str = req.stash('partner_id') as string | undefined;
+    const partner_id = uuid.fromstr(partner_id_str || '');
+
+    if (!partner_id && partner_id_str) {
+        resp.status = 400;
+        resp.body = 'partner_id should be an uuid string';
+        return resp;
+    }
 
     if (!partner_id) {
         const [tuples] = space.select();

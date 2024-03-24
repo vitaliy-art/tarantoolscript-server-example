@@ -1,10 +1,12 @@
 {
     "cSpell.words": [
+        "Devcontainer",
         "frommap",
         "fromstr",
         "isuuid",
         "luatest",
         "setcookie",
+        "Tarantool",
         "tarantoolscript",
         "tomap",
         "Traceback",

@@ -25,7 +25,9 @@
         "http.server": ["tarantoolscript/src/http.server.d.ts"],
         "uuid": ["tarantoolscript/src/uuid.d.ts"],
         "json": ["tarantoolscript/src/json.d.ts"],
-        "log": ["tarantoolscript/src/log.d.ts"]
+        "log": ["tarantoolscript/src/log.d.ts"],
+        "luatest": ["tarantoolscript/src/luatest.d.ts"],
+        "http.client": ["tarantoolscript/src/http.client.d.ts"]
       }
     },
 
@@ -39,7 +41,9 @@
         "http.server",
         "uuid",
         "json",
-        "log"
+        "log",
+        "luatest",
+        "http.client"
       ]
     }
 }

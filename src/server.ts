@@ -48,10 +48,14 @@ function handlerSync(this: void, req: Request): Response {
         tuple = space.frommap({ id: user_id, partner_ids: { [partner.id.str()]: { id: partner_user_id, timestamp } } });
         space.insert(tuple);
     } else {
-        space.update(user_id, [
-            ['=', `[2]["${partner.id}"].id`, partner_user_id],
-            ['=', `[2]["${partner.id}"].timestamp`, timestamp],
-        ]);
+        if (!tuple.partner_ids[partner.id.str()]) {
+            space.update(user_id, [['!', `[2]["${partner.id}"]`, { id: partner_user_id, timestamp }]]);
+        } else {
+            space.update(user_id, [
+                ['=', `[2]["${partner.id}"].id`, partner_user_id],
+                ['=', `[2]["${partner.id}"].timestamp`, timestamp],
+            ]);
+        }
     }
 
     return resp;

@@ -1,6 +1,6 @@
 # TarantoolScript server example
 
-This project is a simple example of [Tarantool](https://www.tarantool.io/en/) HTTP-server, written on TypesScript with [TypescriptToLua](https://typescripttolua.github.io/) and [TarantoolScript](https://github.com/vitaliy-art/tarantoolscript). It is intended to demonstrate the possibility of writing Tarantool Lua scripts on TypeScript.
+This project is a simple example of [Tarantool](https://www.tarantool.io/en/) HTTP-server, written on TypesScript with [TypescriptToLua](https://typescripttolua.github.io/) and [TarantoolScript](https://github.com/vitaliy-art/tarantoolscript). It is intended to demonstrate the possibility of writing Tarantool Lua scripts with TypeScript.
 
 ## Build
 

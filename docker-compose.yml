@@ -1,0 +1,39 @@
+x-common-env: &common-env
+  TT_APP_NAME: app
+
+x-common-config: &common-config
+  healthcheck:
+    disable: true
+  image: tt-ts-demo
+  build:
+    dockerfile_inline: |
+      FROM tarantool/tarantool:3.2.0
+      RUN apt update  \
+          && apt install -y git gcc  build-essential cmake autoconf automake make zlib1g-dev libssl-dev libtool libreadline-dev libncurses5-dev libunwind-dev libicu-dev
+
+      RUN tt rocks install luatest
+      RUN tt rocks install http
+
+  volumes:
+    - ./build/app:/opt/tarantool/app
+  working_dir: /opt/tarantool/app
+  command: >
+    tarantool init.lua
+  environment:
+    <<: *common-env
+  networks:
+    - tarantool
+
+services:
+  instance-001:
+    <<: *common-config
+    container_name: app-instance-001
+    environment:
+      <<: *common-env
+      TT_INSTANCE_NAME: instance-001
+    ports:
+      - "8000:8000"
+
+networks:
+  tarantool:
+    driver: bridge

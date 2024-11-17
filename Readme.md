@@ -10,6 +10,12 @@ To build this project, you need to install first [Node.js](https://nodejs.org/).
 npm run build
 ```
 
+Or just use make:
+
+```bash
+make build
+```
+
 ## Run
 
 After successfully building all Lua files will be placed into `./build/app` directory. You can use this files to run them with [tt CLI utility](https://www.tarantool.io/en/doc/latest/reference/tooling/tt_cli/) or with Tarantool directly.
